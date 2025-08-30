@@ -137,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="HelloWorld_tests\CMakeLists.txt" />
+    <Text Include="out\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="workflows\release.yml" />
