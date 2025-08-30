@@ -136,7 +136,6 @@
     <ClInclude Include="HelloWorld_tests\version.h" />
   </ItemGroup>
   <ItemGroup>
-    <Text Include="CMakeLists.txt" />
     <Text Include="HelloWorld_tests\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
