@@ -37,12 +37,11 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="CMakeLists.txt">
-      <Filter>CMake</Filter>
-    </Text>
     <Text Include="HelloWorld_tests\CMakeLists.txt">
       <Filter>CMake</Filter>
     </Text>
+    <Text Include="out\CMakeLists.txt" />
+    <Text Include="CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
     <None Include="workflows\release.yml" />
