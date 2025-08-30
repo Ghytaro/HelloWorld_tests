@@ -28,7 +28,7 @@ jobs:
         run: cmake --build build --config Release
 
       - name: Package release
-        run: powershell Compress-Archive -Path build\Release\* -DestinationPath build\helloworld-0.0.${{ github.run_number }}-Windows.zip
+        run: powershell Compress-Archive -Path build\* -DestinationPath build\helloworld-0.0.${{ github.run_number }}-Windows.zip
 
       - name: Create Release
         id: create_release
