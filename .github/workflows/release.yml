@@ -1,59 +1,40 @@
 name: 'C++ CI'
 
 on:
-push:
-branches:
-- master
-- feature/github_actions
+  push:
+    branches:
+      - master
+      - feature/github_actions
 
 jobs:
-build:
-runs-on: windows-latest
-
-steps:
-  - name: Checkout Repository
-    uses: actions/checkout@v2
-    with:
-      submodules: true
-  - name: Install Boost Test
-    run: |
-      vcpkg install boost-test:x64-windows
-      vcpkg integrate install
-
-
-  - name: Configure CMake
-    run: cmake -B ${{ github.workspace }}/build -DCMAKE_TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake -DPATCH_VERSION=${{ github.run_number }} -DWITH_BOOST_TEST=ON
-    shell: bash
-
-
-  - name: Build Project
-    run: cmake --build ${{ github.workspace }}/build
-
-  - name: Run Tests
-    run: ctest --test-dir ${{ github.workspace }}/build
-
-  - name: Package Project
-    run: cmake --build ${{ github.workspace }}/build --target package
-
-  - name: Create Release
-    id: create_release
-    uses: actions/create-release@v1
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    with:
-      tag_name: ${{ github.run_number }}
-      release_name: Release ${{ github.run_number }}
-      draft: false
-      prerelease: false
-
- 
-  - name: Upload Release Asset
-    id: upload-release-asset
-    uses: actions/upload-release-asset@v1
-    env:
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-    with:
-      upload_url: ${{ steps.create_release.outputs.upload_url }}
-      asset_path: ${{ github.workspace }}/build/helloworld-0.0.${{ github.run_number }}-Windows.zip
-      asset_name: helloworld-0.0.${{ github.run_number }}-Windows.zip
-      asset_content_type: application/zip
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - run: sudo apt-get update && sudo apt-get install libboost-test-dev -y
+      - run: cmake . -DPATCH_VERSION=${{ github.run_number }} -DWITH_BOOST_TEST=ON
+      - run: cmake --build .
+      - run: cmake --build . --target test
+      - run: cmake --build . --target package
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.run_number }}
+          release_name: Release ${{ github.run_number }}
+          draft: false
+          prerelease: false
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./helloworld-0.0.${{ github.run_number }}-Linux.deb
+          asset_name: helloworld-0.0.${{ github.run_number }}-Linux.deb
+          asset_content_type: application/vnd.debian.binary-package
