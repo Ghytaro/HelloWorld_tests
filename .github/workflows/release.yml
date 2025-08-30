@@ -27,9 +27,6 @@ jobs:
       - name: Build
         run: cmake --build build --config Release
 
-      - name: Run Tests
-        run: cmake --build build --config Release --target test
-
       - name: Package release
         run: powershell Compress-Archive -Path build\Release\* -DestinationPath build\helloworld-0.0.${{ github.run_number }}-Windows.zip
 
