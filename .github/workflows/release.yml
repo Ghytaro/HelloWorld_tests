@@ -38,7 +38,7 @@ jobs:
       - name: Copy exe for release
         run: |
           mkdir build\package
-          copy build\HelloWorld\Release\HelloWorld.exe build\package\HelloWorld-${{ github.run_number }}.exe
+          copy build\HelloWorld\Release\HelloWorld_tests.exe build\package\HelloWorld-${{ github.run_number }}.exe
 
       - name: Create Release
         id: create_release
