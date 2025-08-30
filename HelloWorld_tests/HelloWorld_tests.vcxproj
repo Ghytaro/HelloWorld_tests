@@ -128,16 +128,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="HelloWorld\hello.cpp" />
+    <ClCompile Include="HelloWorld\main.cpp" />
+    <ClCompile Include="HelloWorld\version.cpp" />
     <ClCompile Include="HelloWorld_tests\hello.cpp" />
     <ClCompile Include="HelloWorld_tests\main.cpp" />
     <ClCompile Include="HelloWorld_tests\version.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="HelloWorld\hello.h" />
+    <ClInclude Include="HelloWorld\version.h" />
     <ClInclude Include="HelloWorld_tests\hello.h" />
     <ClInclude Include="HelloWorld_tests\version.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="CMakeLists.txt" />
+    <Text Include="HelloWorld\CMakeLists.txt" />
     <Text Include="HelloWorld_tests\CMakeLists.txt" />
     <Text Include="out\CMakeLists.txt" />
   </ItemGroup>
