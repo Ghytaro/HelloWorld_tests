@@ -32,9 +32,6 @@ jobs:
       - name: Build
         run: cmake --build build --config Release
 
-      - name: Package release
-        run: powershell Compress-Archive -Path build\* -DestinationPath build\helloworld-0.0.${{ github.run_number }}-Windows.zip
-
       - name: Locate exe
         id: locate_exe
         shell: pwsh
@@ -48,7 +45,7 @@ jobs:
           if (-not $exe) { throw "HelloWorld_tests.exe not found under build\" }
           "exe_path=$($exe.FullName)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
 
-      - name: Copy exe for release
+      - name: Prepare exe for release
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force -Path build\package | Out-Null
@@ -72,6 +69,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./build/helloworld-0.0.${{ github.run_number }}-Windows.zip
-          asset_name: helloworld-0.0.${{ github.run_number }}-Windows.zip
-          asset_content_type: application/zip
+          asset_path: ./build/helloworld-0.0.${{ github.run_number }}.exe
+          asset_name: helloworld-0.0.${{ github.run_number }}.exe
+          asset_content_type: application/vnd.microsoft.portable-executable
