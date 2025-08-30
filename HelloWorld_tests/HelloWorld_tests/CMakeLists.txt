@@ -14,4 +14,4 @@ add_library(hello_lib
 	${SOURCES}
 )
 
-add_executable(HelloWorld ${HEADERS} ${SOURCES})
+add_executable(HelloWorld_tests ${HEADERS} ${SOURCES})
