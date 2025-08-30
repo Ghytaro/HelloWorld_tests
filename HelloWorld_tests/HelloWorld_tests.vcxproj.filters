@@ -13,10 +13,44 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="CMake">
+      <UniqueIdentifier>{9fe1cf2f-2d31-41f9-9049-1f18f637257e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="HelloWorld_tests.cpp">
+    <ClCompile Include="HelloWorld_tests\main.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="HelloWorld_tests\hello.cpp">
+      <Filter>Файлы ресурсов</Filter>
+    </ClCompile>
+    <ClCompile Include="tests\test_helloworld.cpp">
+      <Filter>Файлы ресурсов</Filter>
+    </ClCompile>
+    <ClCompile Include="HelloWorld_tests\version.cpp">
+      <Filter>Файлы ресурсов</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="HelloWorld_tests\hello.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="HelloWorld_tests\version.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="CMakeLists.txt">
+      <Filter>CMake</Filter>
+    </Text>
+    <Text Include="HelloWorld_tests\CMakeLists.txt">
+      <Filter>CMake</Filter>
+    </Text>
+    <Text Include="tests\CMakeLists.txt">
+      <Filter>CMake</Filter>
+    </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="workflows\release.yml" />
   </ItemGroup>
 </Project>
