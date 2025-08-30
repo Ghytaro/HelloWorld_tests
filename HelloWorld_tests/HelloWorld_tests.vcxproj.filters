@@ -24,9 +24,6 @@
     <ClCompile Include="HelloWorld_tests\hello.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
-    <ClCompile Include="tests\test_helloworld.cpp">
-      <Filter>Файлы ресурсов</Filter>
-    </ClCompile>
     <ClCompile Include="HelloWorld_tests\version.cpp">
       <Filter>Файлы ресурсов</Filter>
     </ClCompile>
@@ -44,9 +41,6 @@
       <Filter>CMake</Filter>
     </Text>
     <Text Include="HelloWorld_tests\CMakeLists.txt">
-      <Filter>CMake</Filter>
-    </Text>
-    <Text Include="tests\CMakeLists.txt">
       <Filter>CMake</Filter>
     </Text>
   </ItemGroup>
