@@ -35,10 +35,24 @@ jobs:
       - name: Package release
         run: powershell Compress-Archive -Path build\* -DestinationPath build\helloworld-0.0.${{ github.run_number }}-Windows.zip
 
-      - name: Copy exe for release
+      - name: Locate exe
+        id: locate_exe
+        shell: pwsh
         run: |
-          mkdir build\package
-          copy build\HelloWorld\Release\HelloWorld_tests.exe build\package\HelloWorld-${{ github.run_number }}.exe
+          $exe = Get-ChildItem -Path build -Recurse -Filter HelloWorld_tests.exe |
+                 Where-Object { $_.FullName -match '\\Release\\' } |
+                 Select-Object -First 1
+          if (-not $exe) {
+            $exe = Get-ChildItem -Path build -Recurse -Filter HelloWorld_tests.exe | Select-Object -First 1
+          }
+          if (-not $exe) { throw "HelloWorld_tests.exe not found under build\" }
+          "exe_path=$($exe.FullName)" | Out-File -FilePath $env:GITHUB_OUTPUT -Append
+
+      - name: Copy exe for release
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path build\package | Out-Null
+          Copy-Item -Path "${{ steps.locate_exe.outputs.exe_path }}" -Destination "build\package\HelloWorld-${{ github.run_number }}.exe" -Force
 
       - name: Create Release
         id: create_release
