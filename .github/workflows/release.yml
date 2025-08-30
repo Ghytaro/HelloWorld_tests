@@ -35,6 +35,11 @@ jobs:
       - name: Package release
         run: powershell Compress-Archive -Path build\* -DestinationPath build\helloworld-0.0.${{ github.run_number }}-Windows.zip
 
+      - name: Copy exe for release
+        run: |
+          mkdir build\package
+          copy build\HelloWorld\Release\HelloWorld.exe build\package\HelloWorld-${{ github.run_number }}.exe
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
