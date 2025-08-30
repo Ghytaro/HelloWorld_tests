@@ -45,5 +45,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="workflows\release.yml" />
+    <None Include="packages.config" />
   </ItemGroup>
 </Project>
